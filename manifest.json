@@ -1,11 +1,11 @@
 
 {
-    "name": "Hello Extensions",
+    "name": "Txt Extensions",
     "description": "Base Level Extension",
     "version": "1.0",
     "manifest_version": 3,
+    "permissions": ["storage"],
     "action": {
-      "default_popup": "hello.html"
-      
+      "default_popup": "Txt.html"
     }
 }  
