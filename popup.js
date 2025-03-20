@@ -1,22 +1,38 @@
 document.addEventListener("DOMContentLoaded", function () {
     const textArea = document.getElementById("textArea");
-    const saveBtn = document.getElementById("saveBtn");
-    const loadBtn = document.getElementById("loadBtn");
+    const saveButtons = document.querySelectorAll(".saveBtn"); // Fix: Use querySelectorAll
+    const loadButtons = document.querySelectorAll(".loadBtn"); // Fix: Use querySelectorAll
+    const clearButtons = document.querySelectorAll(".clearBtn");
 
     // Auto-load saved text when popup opens
-    chrome.storage.local.get(["savedText"], function (data) {
-        if (chrome.runtime.lastError) {
-            console.error("Storage error:", chrome.runtime.lastError);
-        } else {
-            textArea.value = data.savedText || "";
-        }
-    });
+    saveButtons.forEach((button, index) => {
+        button.addEventListener("click", function () {
+            const text = textArea.value || "";
+            const slotKey = `slot${index + 1}`;
 
-    // Save text to Chrome storage
-    saveBtn.addEventListener("click", function () {
-        chrome.storage.local.set({ savedText: textArea.value || "" }, function () {
+            chrome.storage.sync.set({ [slotKey]: text }, function () {
+                alert(`Saved to Slot ${index + 1} (Synced)`);
+            });
         });
     });
 
-    
+    loadButtons.forEach((button, index) => {
+        button.addEventListener("click", function () {
+            const slotKey = `slot${index + 1}`;
+
+            chrome.storage.sync.get([slotKey], function (data) {
+                textArea.value = data[slotKey] || "";
+            });
+        });
+    });
+
+    clearButtons.forEach((button, index) => {
+        button.addEventListener("click", function () {
+            const slotKey = `slot${index + 1}`;
+
+            chrome.storage.sync.remove(slotKey, function () {
+                alert(`Cleared Slot ${index + 1} (Synced)`);
+            });
+        });
+    });
 });
