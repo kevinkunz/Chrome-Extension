@@ -7,5 +7,13 @@
     "permissions": ["storage"],
     "action": {
       "default_popup": "Txt.html"
+    },
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "txt-extensions@yourname.com",
+        "data_collection_permissions": {
+          "required": ["none"]
+        }
+      }
     }
 }  
