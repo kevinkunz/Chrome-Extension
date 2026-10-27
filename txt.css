@@ -5,10 +5,52 @@ background-color: bisque;
 #textArea {
 
     background-color: white;
+    min-width: 200px;
+    min-height: 250px;
+    max-width: 500px;
+    max-height: 400px;
     
 }
 
-#savebutton {
 
-background-color: black;
+.saveBtn{
+background-color: #2F4276;
+color: white;
+border-radius: 25px;
+
+}
+
+.saveBtn:hover {
+
+background-color: #A7AFBF;
+color: whitesmoke;
+
+}
+
+.loadBtn{
+background-color: #2F4276;
+color: white;
+border-radius: 25px;
+
+}
+
+.loadBtn:hover {
+
+background-color: #A7AFBF;
+color: whitesmoke;
+
+}
+
+.clearBtn{
+background-color: #2F4276;
+color: white;
+border-radius: 25px;
+
+}
+
+.clearBtn:hover {
+
+background-color: #A7AFBF;
+color: whitesmoke;
+
 }
